@@ -1,5 +1,5 @@
-
 def get_student_score():
+    """Handles user input to obtain the student's score."""
     while True:
         try:
             score = float(input("Enter your score: "))
@@ -11,7 +11,7 @@ def get_student_score():
             print("Invalid input. Please enter a numerical value.")
 
 def calculate_grade(score):
-   
+    """Determines the grade based on the provided score using the grading scale."""
     if score >= 90:
         return 'A'
     elif score >= 80:
@@ -23,6 +23,7 @@ def calculate_grade(score):
     else:
         return 'F'
 
+# Main program flow
 student_score = get_student_score()
 student_grade = calculate_grade(student_score)
 print(f"Your Grade is: {student_grade}")
