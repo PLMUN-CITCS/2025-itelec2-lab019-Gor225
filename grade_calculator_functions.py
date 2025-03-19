@@ -1,45 +1,43 @@
-def prompt_user_score() -> float:
+def get_student_score() -> float:
     """
-    Prompts the user for their score, ensuring a valid input.
+    Handles user input to obtain the student's score.
+    Ensures valid numerical input (integer or float).
     Returns:
-        float: The user's validated score.
+        float: The student's score.
     """
     while True:
         try:
-            score = float(input("Enter your score (0-100): "))
+            score = float(input("Enter your score: "))
             if 0 <= score <= 100:
                 return score
             else:
-                print("Invalid input. Score must be between 0 and 100.")
+                print("Please enter a valid score between 0 and 100.")
         except ValueError:
-            print("Invalid input. Please enter a number.")
+            print("Invalid input. Please enter a numeric value.")
 
-def assign_grade(score: float) -> str:
+def calculate_grade(score: float) -> str:
     """
-    Assigns a grade based on the provided score.
-    Parameters:
-        score (float): The numerical score of the user.
+    Determines the letter grade based on the given score and grading scale.
+    
+    Args:
+        score (float): The student's numerical score.
+    
     Returns:
-        str: The assigned grade ('A', 'B', 'C', 'D', or 'F').
+        str: The corresponding letter grade.
     """
-    grading_scale = {
-        'A': score >= 90,
-        'B': 80 <= score < 90,
-        'C': 70 <= score < 80,
-        'D': 60 <= score < 70,
-        'F': score < 60
-    }
-    for grade, condition in grading_scale.items():
-        if condition:
-            return grade
+    if score >= 90:
+        return 'A'
+    elif score >= 80:
+        return 'B'
+    elif score >= 70:
+        return 'C'
+    elif score >= 60:
+        return 'D'
+    else:
+        return 'F'
 
-def execute_grading_process():
-    """
-    Facilitates the flow of the program, from input to output.
-    """
-    score = prompt_user_score()
-    grade = assign_grade(score)
-    print(f"\nYour Grade is: {grade}")
-
+# Main program flow
 if __name__ == "__main__":
-    execute_grading_process()
+    student_score = get_student_score()
+    grade = calculate_grade(student_score)
+    print(f"Your Grade is: {grade}")
