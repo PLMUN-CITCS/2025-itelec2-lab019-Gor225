@@ -1,46 +1,45 @@
-def get_student_score() -> int:
+def prompt_user_score() -> float:
     """
-    Prompts the user to enter a valid numerical score between 0 and 100.
+    Prompts the user for their score, ensuring a valid input.
     Returns:
-        int: The student's validated score.
+        float: The user's validated score.
     """
     while True:
         try:
-            score = int(input("Enter your score (0-100): "))
-            if 0 <= score <= 100:  # Check if score is within range
+            score = float(input("Enter your score (0-100): "))
+            if 0 <= score <= 100:
                 return score
             else:
-                print("Error: Score must be between 0 and 100.")
+                print("Invalid input. Score must be between 0 and 100.")
         except ValueError:
-            print("Error: Please enter a whole number.")
+            print("Invalid input. Please enter a number.")
 
-def calculate_grade(score: int) -> str:
+def assign_grade(score: float) -> str:
     """
-    Calculates the grade based on the provided score.
+    Assigns a grade based on the provided score.
     Parameters:
-        score (int): The student's score.
+        score (float): The numerical score of the user.
     Returns:
-        str: The corresponding grade (A, B, C, D, or F).
+        str: The assigned grade ('A', 'B', 'C', 'D', or 'F').
     """
-    if 90 <= score <= 100:
-        return 'A'
-    elif 80 <= score < 90:
-        return 'B'
-    elif 70 <= score < 80:
-        return 'C'
-    elif 60 <= score < 70:
-        return 'D'
-    else:
-        return 'F'
+    grading_scale = {
+        'A': score >= 90,
+        'B': 80 <= score < 90,
+        'C': 70 <= score < 80,
+        'D': 60 <= score < 70,
+        'F': score < 60
+    }
+    for grade, condition in grading_scale.items():
+        if condition:
+            return grade
 
-def display_result():
+def execute_grading_process():
     """
-    Main function to coordinate getting the score, calculating the grade,
-    and displaying the result.
+    Facilitates the flow of the program, from input to output.
     """
-    score = get_student_score()
-    grade = calculate_grade(score)
+    score = prompt_user_score()
+    grade = assign_grade(score)
     print(f"\nYour Grade is: {grade}")
 
 if __name__ == "__main__":
-    display_result()
+    execute_grading_process()
