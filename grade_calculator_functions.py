@@ -1,8 +1,6 @@
-# grade_calculator_functions.py
-
 def get_student_score() -> float:
     """
-    Prompts the user to enter a student's score and returns it as a numerical value.
+    Prompts the user to enter a student's score and returns it as a float.
 
     Returns:
         float: The numerical score entered by the user.
@@ -15,14 +13,14 @@ def get_student_score() -> float:
             else:
                 print("Please enter a score between 0 and 100.")
         except ValueError:
-            print("Invalid input. Please enter a valid numerical score.")
+            print("Invalid input. Please enter a numerical value.")
 
 def calculate_grade(score: float) -> str:
     """
-    Determines the letter grade based on the provided score.
+    Determines the letter grade based on the given score.
 
-    Parameters:
-        score (float): The numerical score.
+    Args:
+        score (float): The numerical score to evaluate.
 
     Returns:
         str: The corresponding letter grade ('A', 'B', 'C', 'D', or 'F').
@@ -38,9 +36,9 @@ def calculate_grade(score: float) -> str:
     else:
         return 'F'
 
-def main():
+def main() -> None:
     """
-    Main program flow to obtain the student's score and display the calculated grade.
+    Main program flow to get the student's score and calculate their grade.
     """
     score = get_student_score()
     grade = calculate_grade(score)
@@ -48,4 +46,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
