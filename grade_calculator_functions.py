@@ -11,9 +11,9 @@ def get_student_score() -> float:
             if 0 <= score <= 100:
                 return score
             else:
-                print("Please enter a valid score between 0 and 100.")
+                print("Error: Please enter a score between 0 and 100.")
         except ValueError:
-            print("Invalid input. Please enter a numerical value.")
+            print("Error: Invalid input. Please enter a numerical value.")
 
 def calculate_grade(score: float) -> str:
     """
@@ -34,8 +34,13 @@ def calculate_grade(score: float) -> str:
     else:
         return 'F'
 
-# Main Program Flow
-if __name__ == "__main__":
+def main():
+    """
+    Main function to execute the grade calculator program.
+    """
     score = get_student_score()
     grade = calculate_grade(score)
     print(f"Your Grade is: {grade}")
+
+if __name__ == "__main__":
+    main()
